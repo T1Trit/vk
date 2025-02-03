@@ -14,7 +14,7 @@ import (
 
 type LogoService struct {
 	model       *ml.Model
-	referenceDB map[string][]float32 // Хранение векторов эталонных логотипов
+	referenceDB map[string][]float32 // Хранение 
 }
 
 func NewLogoService(model *ml.Model) *LogoService {
@@ -24,7 +24,7 @@ func NewLogoService(model *ml.Model) *LogoService {
 	}
 }
 
-// Добавление эталонного логотипа
+// Добавление логотипа
 func (s *LogoService) AddReferenceLogo(filePath string) error {
 	file, err := os.Open(filePath)
 	if err != nil {
@@ -46,7 +46,7 @@ func (s *LogoService) AddReferenceLogo(filePath string) error {
 	return nil
 }
 
-// Проверка соответствия входного изображения эталонным логотипам
+// Проверка соответствия входного изображения с логотипами
 func (s *LogoService) IsLogoMatch(ctx context.Context, filePath string) (bool, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
@@ -64,7 +64,7 @@ func (s *LogoService) IsLogoMatch(ctx context.Context, filePath string) (bool, e
 		return false, fmt.Errorf("failed to extract features: %w", err)
 	}
 
-	// Сравнение с эталонами
+	// Сравнение с samples 
 	for _, refFeatures := range s.referenceDB {
 		similarity := cosineSimilarity(inputFeatures, refFeatures)
 		if similarity > 0.8 { // Пороговое значение

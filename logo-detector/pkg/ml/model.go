@@ -34,15 +34,13 @@ func (m *Model) ExtractFeatures(img image.Image) ([]float32, error) {
 	if err != nil {
 		return nil, fmt.Errorf("failed to convert image to tensor: %w", err)
 	}
-
-	// TODO: Выполнить инференс модели
-	// Здесь должна быть реализация вызова ONNX Runtime для получения вектора признаков
+	
 
 	return []float32{}, nil
 }
 
 func imageToTensor(img image.Image) (tensor.Tensor, error) {
 	// Преобразование изображения в тензор
-	// Реализация зависит от формата модели
+	// Зависит от модели
 	return nil, nil
 }
